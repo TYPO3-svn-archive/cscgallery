@@ -8,7 +8,6 @@ if (!defined ('TYPO3_MODE')) {
 $_EXTCONF = unserialize($_EXTCONF); // unserializing the configuration so we can use it here:
 
 if ($_EXTCONF['removePositionTypes'] || !$_EXTCONF) {
-/*
 	t3lib_extMgm::addPageTSConfig('
 		TCEFORM.tt_content.imageorient.types.gallery.removeItems = 17,18
 	#	TCEFORM.tt_content.imageorient.types.gallery.altLabels.25 = Beside, right
@@ -25,7 +24,7 @@ if ($_EXTCONF['removePositionTypes'] || !$_EXTCONF) {
 		TCEFORM.tt_content.imagecols.types.gallery.addItems.24 = 24
 		TCEFORM.tt_content.imagecols.types.gallery.addItems.32 = 32
 	');
-*/
+/*
 	t3lib_extMgm::addPageTSConfig('
 		TCEFORM.tt_content.imageorient.types.' . $_EXTKEY . '.removeItems = 17,18
 		TCEFORM.tt_content.imageorient.types.' . $_EXTKEY . '.altLabels.25 = Beside, right
@@ -41,6 +40,7 @@ if ($_EXTCONF['removePositionTypes'] || !$_EXTCONF) {
 		TCEFORM.tt_content.imagecols.types.' . $_EXTKEY . '.addItems.20 = 20
 		TCEFORM.tt_content.imagecols.types.' . $_EXTKEY . '.addItems.24 = 24
 		TCEFORM.tt_content.imagecols.types.' . $_EXTKEY . '.addItems.32 = 32
+*/
 	');
 }
 ?>
