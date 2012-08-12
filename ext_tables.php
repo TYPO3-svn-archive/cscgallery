@@ -17,7 +17,7 @@ foreach ($TCA['tt_content']['columns']['CType']['config']['items'] as $iVal) {
 			//  add image gallery before div.lists
 		$ttcCTypeItems[] = array(
 			'LLL:EXT:' . $_EXTKEY . '/locallang_db.xml:tt_content.CType_pi1',
-			'gallery',
+			$_EXTKEY . '_pi1',
 			'i/tt_content_image.gif',
 		);
 	}
@@ -26,7 +26,6 @@ foreach ($TCA['tt_content']['columns']['CType']['config']['items'] as $iVal) {
 }
 	//  replace present items array by extended array
 $TCA['tt_content']['columns']['CType']['config']['items'] = $ttcCTypeItems;
-##t3lib_extMgm::addPItoST43('gallery', 'pi1/class.tx_cscgallery_pi1.php', '_pi1', 'CType', 1);
 
 
 
@@ -34,10 +33,12 @@ $TCA['tt_content']['columns']['CType']['config']['items'] = $ttcCTypeItems;
  * Configure plugin / BE form
  */
 	//  copy configuration from CType 'image'
-$TCA['tt_content']['types']['gallery']['showitem'] = $TCA['tt_content']['types']['image']['showitem'];
+$TCA['tt_content']['ctrl']['typeicons'][$_EXTKEY . '_pi1']        = $TCA['tt_content']['ctrl']['typeicons']['image'];
+$TCA['tt_content']['ctrl']['typeicon_classes'][$_EXTKEY . '_pi1'] = $TCA['tt_content']['ctrl']['typeicon_classes']['image'];
+$TCA['tt_content']['types'][$_EXTKEY . '_pi1']['showitem']        = $TCA['tt_content']['types']['image']['showitem'];
 	//  add
-t3lib_extMgm::addPiFlexFormValue('*', 'FILE:EXT:' . $_EXTKEY . '/pi1/flexform_ds.xml', 'gallery');
-t3lib_extMgm::addToAllTCAtypes('tt_content', 'pi_flexform', 'gallery', 'after:imagecaption_position');
+t3lib_extMgm::addPiFlexFormValue('*', 'FILE:EXT:' . $_EXTKEY . '/pi1/flexform_ds.xml', $_EXTKEY . '_pi1');
+t3lib_extMgm::addToAllTCAtypes('tt_content', 'pi_flexform', $_EXTKEY . '_pi1', 'after:imagecaption_position');
 
 
 /**

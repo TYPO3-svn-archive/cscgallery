@@ -1,5 +1,5 @@
 2012-08-12 Ulfried Herrmann  <herrmann@die-netzmacher.de>
-	0.2.0
+	1.0.0
 	* UPD:  Code revision
 	*       TCA cleaning (corresponding to tt_content image), compatibility up to TYPO3 6.0
 	*       t3jquery integration
@@ -9,5 +9,5 @@
 	0.0.1
 	* FIX: BUG hartcoded list of tt_content types prevents all modification by other extensions or core updates
 
-2010-03-10 Lars Hayer  <typo3@larshayer.com>
+2010-03-10 Lars Hayer <typo3@larshayer.com>
 	* initial code generated with kickstarter

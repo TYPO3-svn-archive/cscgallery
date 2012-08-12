@@ -2,15 +2,33 @@
 <T3locallang>
 	<meta type="array">
 		<type>module</type>
-		<description>Language labels for plugin &quot;tx_lhgallery_pi1&quot;</description>
+		<description>Language labels for plugin „cscgallery”</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="list_mode_1">Mode 1</label>
-			<label index="list_mode_2">Mode 2</label>
-			<label index="list_mode_3">Mode 3</label>
-			<label index="back">Back</label>
-			<label index="submit_button_label">Click here to submit value</label>
+			<label index="ff.sheet.canvas">Canvas</label>
+			<label index="ff.sheet.slideshow">Slideshow</label>
+			<label index="ff.sheet.controls">Controls</label>
+			<label index="ff.sheet.thumbnails">Thumbnails</label>
+
+			<label index="ff.field.cropscaling">Crop Scaling</label>
+			<label index="ff.field.singleViewOnly">No Thumnails</label>
+			<label index="ff.field.cyclespeed">Cycle Speed</label>
+			<label index="ff.field.autostart">Autostart</label>
+			<label index="ff.field.largectrls">Show Control Buttons in Gallery</label>
+			<label index="ff.field.showtitle">Show Title in Lightbox</label>
+			<label index="ff.field.thumbwidth">Thumbnail Width</label>
+			<label index="ff.field.thumbheight">Thumb Height</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="ff.sheet.controls">Steuerungen</label>
+
+			<label index="ff.field.cropscaling">Crop Scaling: Passe Bild (durch Zuschneiden) an maximale Bildfläche an</label>
+			<label index="ff.field.singleViewOnly">Keine Thumnails anzeigen</label>
+			<label index="ff.field.largectrls">Steuerschaltflächen in Galerie anzeigen</label>
+			<label index="ff.field.showtitle">Bildtitel in Lightbox anzeigen</label>
+			<label index="ff.field.thumbwidth">Thumbnail Breite</label>
+			<label index="ff.field.thumbheight">Thumb Höhe</label>
 		</languageKey>
 	</data>
 </T3locallang>
