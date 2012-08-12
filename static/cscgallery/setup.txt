@@ -1,0 +1,269 @@
+
+tt_content.gallery < tt_content.textpic
+tt_content.gallery {
+  
+  5 = USER
+  5 {
+      
+    userFunc = tx_cscgallery->addHeaderData
+    
+    pathToJquery      = EXT:cscgallery/res/cycle/jquery-1.3.1.min.js
+    pathToCycle       = EXT:cscgallery/res/cycle/jquery.cycle.min.js
+#    pathToTools       = EXT:cscgallery/res/jquery.tools.min.js
+    pathToLightbox    = EXT:cscgallery/res/fancybox/jquery.fancybox-1.3.0.js
+    pathToCycleCSS    = EXT:cscgallery/res/cycle/jquery.cycle.css
+    pathToLightboxCSS = EXT:cscgallery/res/fancybox/jquery.fancybox-1.3.0.css
+    templateFile      = EXT:cscgallery/res/jquery.cycle.cscgallery.js
+    
+    singleheight      = 'auto'
+    useLightbox       = 0
+    autostart         = pause
+    singleViewOnly    = 0
+    timeout           = 0
+    largectrls        = 0
+    pause             = 1
+    showtitle         = 0
+    
+    slideshow (
+    )
+  }
+
+
+  // SLIDESHOW RENDERING
+  20 >
+  20 < tt_content.image.20
+  20 {
+    1 {
+      file {
+      	width {
+      		field = imagewidth
+      		override.cObject = TEXT
+      		override.cObject {
+      			field = imagewidth
+      			wrap = |c
+      			if.isTrue.data = TSFE:register|cropscaling
+      		}
+      	}
+      	height {
+      		field = imageheight
+      		override.cObject = TEXT
+      		override.cObject {
+      			field = imageheight
+      			#if.isTrue.data = TSFE:register|cropscaling
+      		}
+      	}
+      }
+
+    // SLIDESHOW VIEW
+    // Medium image for the slideshow - URL as "href" in thumbnail <a>
+    imageLinkWrap >
+    imageLinkWrap = 1
+    imageLinkWrap {
+
+        // Linkwrapping needs to be enabled
+        enable.field = image_zoom
+        enable.ifEmpty.typolink.parameter.field = image_link
+        enable.ifEmpty.typolink.parameter.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+        enable.ifEmpty.typolink.returnLast = url
+
+        // Typolink with "rel" for lightbox
+        typolink {
+          target = {$styles.content.links.target}
+          extTarget = {$styles.content.links.extTarget}
+          
+          parameter.cObject = IMG_RESOURCE
+          parameter.cObject.file.import.data = TSFE:lastImageInfo|origFile
+      		parameter.cObject.file.maxW = 1024
+      		parameter.cObject.file.maxH = 1024
+
+          // Override image URL if link
+          parameter.override.typolink.parameter.field = image_link
+          parameter.override.typolink.parameter.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+          parameter.override.typolink.returnLast = url
+          parameter.override.if.isTrue.field = image_link
+      		
+    			// Add the "rel" attribute
+    			ATagParams = rel="lightbox{field:uid}"
+    			#ATagParams.stdWrap.wrap = class="iframe"
+          ATagParams.insertData = 1
+    			ATagParams.if.isTrue.field = image_zoom
+        }
+    }
+
+    }
+  
+    maxWInText.override >
+    maxWInText.override.field = imagewidth
+    #maxWInText.override.if.isTrue.data = TSFE:regiter|cropscaling
+  
+    equalH.if.isFalse.data = TSFE:register|cropscaling
+    
+    cols >
+    cols = 1
+    
+    imgMax = 1
+    
+    noRows >
+    noRows = 0
+    
+    imageColumnStdWrap.dataWrap >
+    imageStdWrap.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-slideshow" id="gallery-slideshow{field:uid}" style="width:{register:totalwidth}px;"><div id="slideshow{field:uid}" class="slideshow"> | </div></div>
+
+    imageStdWrapNoWidth.wrap >
+    imageStdWrapNoWidth.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-slideshow" id="gallery-slideshow{field:uid}" style="width:{register:imagewidth}px;"><div id="slideshow{field:uid}" class="slideshow">  | </div></div>
+
+    renderMethod = simple
+    rendering.simple {
+			imgTagStdWrap.wrap >
+      imgTagStdWrap.dataWrap = <div style="width:100%; height:{register:imageheight}px;"> | </div>
+      caption.wrap >
+    }
+  }
+
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+  20.text.20 >
+  20.text.20 < tt_content.image.20
+  20.text.20 {
+    
+	maxW = {$styles.content.imgtext.maxW}
+	maxWInText = {$styles.content.imgtext.maxW}
+  
+  #colSpace = 5
+
+	equalH >
+    
+    1 {
+      #if.isTrue.data = register:singleViewOnly
+      
+      file {
+      	width {
+      		field = imagewidth
+      		override.cObject = TEXT
+      		override.cObject {
+      			data = TSFE:register|thumbwidth
+      			wrap = |c
+      			if.isTrue.data = TSFE:register|thumbwidth
+      		}
+      	}
+      	height {
+      		data = TSFE:register|thumbheight
+      		override.cObject = TEXT
+      		override.cObject {
+      			data = TSFE:register|thumbheight
+      			if.isTrue.data = TSFE:register|thumbheight
+      		}
+      	}
+      }
+      
+      imageLinkWrap >
+  		imageLinkWrap = 1
+  		imageLinkWrap {
+  
+  			enable.field >
+  			enable = 1
+  			enable.ifEmpty.typolink.parameter.field = image_link
+  			enable.ifEmpty.typolink.parameter.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+  			enable.ifEmpty.typolink.returnLast = url
+  
+        typolink {
+          target = {$styles.content.links.target}
+          extTarget = {$styles.content.links.extTarget}
+          
+          #parameter.data = TSFE:lastImageInfo|origFile
+          parameter.cObject = IMG_RESOURCE
+          parameter.cObject.file.import.data = TSFE:lastImageInfo|origFile
+      		parameter.cObject.file.maxW = 1024
+      		parameter.cObject.file.maxH = 1024
+      		
+          parameter.override.typolink.parameter.field = image_link
+          parameter.override.typolink.parameter.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+          parameter.override.typolink.returnLast = url
+          parameter.override.if.isTrue.field = image_link
+
+          title.field = imagecaption // header
+          title.split.token.char = 10
+          title.split.returnKey.data = register : IMAGE_NUM_CURRENT
+          
+    			// Add the "rel" attribute
+    			#ATagParams = rel="lightbox{field:uid}"
+          ATagParams.cObject = IMG_RESOURCE
+          ATagParams.cObject.file.import.data = TSFE:lastImageInfo|origFile
+      		ATagParams.cObject.file.width.field = imagewidth
+      		ATagParams.cObject.file.maxW = {$styles.content.imgtext.maxW}
+      		#ATagParams.cObject.file.height.field = imageheight
+      		ATagParams.cObject.file.height.stdWrap.cObject = COA
+          ATagParams.cObject.file.height.stdWrap.cObject {
+            5 = TEXT
+            5.field = imageheight
+            
+            10 = TEXT
+            10.value = |c
+            10.if.isTrue.data = TSFE:register|cropscaling
+            
+            20 = TEXT
+            20.value = |m
+            20.if.isFalse.data = TSFE:register|cropscaling
+          }
+
+      		ATagParams.wrap = rel="|"
+          #ATagParams.insertData = 1
+    		#ATagParams.if.isTrue.field = image_zoom
+        }
+  		}
+  
+    }
+
+   
+
+    imageStdWrap.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-nav {register:singleViewOnly}" style="width:{register:totalwidth}px;" id="nav{field:uid}"> | </div>
+
+    imageStdWrapNoWidth.wrap >
+    imageStdWrapNoWidth.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-nav" id="nav{field:uid}"> | </div>
+
+    layout.key >
+    layout.key = 0
+    layout.default.value = ###IMAGES###
+
+    renderMethod = ul
+    rendering.ul.caption >
+    
+    caption >
+  }
+
+}
+
+config {
+  doctype = xhtml_strict
+  xhtml_cleaning = all
+  #metaCharset = UTF-8
+  xmlprologue = none
+  admPanel = 1
+}
+
+page = PAGE
+page {
+  
+  includeLibs.tx_cscgallery = EXT:cscgallery/scripts/class.tx_cscgallery.php
+
+  10 < styles.content.get
+
+}
+
+/*
+tt_content.gallery < tt_content.image
+tt_content.gallery {
+  // SingleView rendering
+  15 < tt_content.image.20
+  15 {
+    imgMax = 1
+    cols.field = 1
+  }
+  
+  // GridView renderin
+  20 {
+    renderMethod = div
+  }
+}
+*/

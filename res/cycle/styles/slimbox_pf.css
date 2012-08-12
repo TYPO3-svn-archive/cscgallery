@@ -1,0 +1,190 @@
+#lbOverlay {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background-color: #000;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+#lbCenter, #lbBottomContainer {
+	position: absolute;
+	left: 50%;
+	overflow: hidden;
+	background-color: #fff;
+	z-index: 1000;
+}
+
+.lbLoading {
+	background: #fff url(../images/sb_loading.gif) no-repeat center;
+	z-index: 1000;
+}
+
+#lbImage {
+	border: 10px solid #fff;
+	z-index: 1000;
+}
+
+
+.photos {
+	padding: 3px;
+	border: 1px solid #fff;
+}
+
+a:hover .photos {
+	border: 1px solid #999;
+}
+
+.lightboxDesc a {
+	color: #999999;
+	text-decoration: none;
+}
+
+.lightboxDesc a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+/***************************
+
+	styles for hidden next & previous buttons
+
+***************************/
+/*
+#lbPrevLink, #lbNextLink {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 32px;
+	outline: none;
+	z-index: 1000;
+}
+
+#lbPrevLink {
+	left: 0;
+}
+
+#lbPrevLink:hover {
+	background: transparent url(../images/sb_prevlabel.gif) no-repeat 0% 15%;
+}
+
+#lbNextLink {
+	right: 0;
+}
+
+#lbNextLink:hover {
+	background: transparent url(../images/sb_nextlabel.gif) no-repeat 100% 15%;
+}
+*/
+/***************************
+
+	styles for next & previous buttons as part of footer
+
+***************************/
+
+#lbPrevLink, #lbNextLink {
+	display: block;
+	width: 63px;
+	height: 32px;
+	outline: none;
+	z-index: 1000;
+}
+
+#lbPrevLink {
+	float: left;
+	background: transparent url(../images/sb_prevlabel.gif) no-repeat left;
+	
+}
+
+#lbPrevLink:hover {
+	background: transparent url(../images/sb_prevlabel.gif) no-repeat left;
+}
+
+#lbNextLink {
+	float: right;
+	background: transparent url(../images/sb_nextlabel.gif) no-repeat right;
+}
+
+#lbNextLink:hover {
+	background: transparent url(../images/sb_nextlabel.gif) no-repeat right;
+}
+
+#lbControls {
+	display: block;
+	height: 32px;
+	z-index: 1000;
+}
+
+/*#lbCloseLink {
+	display: block;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background: transparent url(../images/sb_closelabel.gif) no-repeat center;
+	margin: 0px 0;
+}*/
+
+/**********************************/
+
+
+#lbBottom {
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #666;
+	line-height: 1.4em;
+	text-align: left;
+	border: 10px solid #fff;
+	border-top-style: none;
+	z-index: 1000;
+}
+
+#lbCloseLink {
+	clear: both;
+	display: block;
+	float: right;
+	width: 66px;
+	height: 22px;
+	background: transparent url(../images/sb_closelabel.gif) no-repeat center;
+	margin: 0px 0px 0px 0px;
+	/*border: 1px solid #000;*/
+	z-index: 1000;
+}
+
+#lbCaption, #lbNumber, #lbDescription {
+	margin-right: 71px;
+	/*border: 1px solid #000;*/
+	z-index: 1000;
+}
+
+#lbCaption {
+	font-weight: bold;
+}
+
+#lbPrintLink {
+	display: block;
+	float: right;
+	width: 22px;
+	height: 22px;
+	background: transparent url(../images/sb_printicon.gif) no-repeat center;
+	margin:15px 5px 0 0; padding:1px;
+}
+
+#lbSaveLink {
+	display: block;
+	float: right;
+	width: 22px;
+	height: 22px;
+	background: transparent url(../images/sb_saveicon.gif) no-repeat center;
+	margin:15px 5px 0 0; padding:1px;
+}
+
+#lbSaveLink:hover,
+#lbPrintLink:hover {
+	border: 1px solid #666;
+	padding: 0px;
+}
+
+.lightboxDesc {
+	display: none;
+}

@@ -1,0 +1,144 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+a {
+	outline: none;
+}
+a img {
+	border: none;
+}
+.hidden {
+	display: none !important;
+}
+.csc-textpic {
+	position: relative;
+/*	margin-bottom: 10px;
+	clear: both;*/
+}
+.csc-textpic-intext-right-nowrap,
+.csc-textpic-intext-left-nowrap {
+	margin: 0 auto;
+	min-width: 600px;
+}
+.csc-textpic-imagewrap {
+	position: relative;
+/*	margin-bottom: 10px;
+	clear: both;*/
+}
+.csc-gallery-nav a img {
+	opacity: 0.5;
+}
+.csc-gallery-nav a:hover img,
+.csc-gallery-nav a.activeSlide img {
+	opacity: 1;
+}
+.gallery-slideshow {
+	clear: both;
+}
+.slideshow {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.slideshow div {
+	width: 100%;
+	height: 100%;
+}
+.slideshow a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.slideshow img {
+	display: block;
+	margin: auto;
+}
+
+div.csc-textpic-left div.csc-gallery-nav {
+	float:none;
+}
+div.csc-textpic-right div.csc-gallery-nav {
+	clear:both;
+}
+div.csc-textpic-intext-left-nowrap div.csc-textpic-imagewrap,
+div.csc-textpic-intext-right-nowrap div.csc-textpic-imagewrap {
+	margin: 0  !important;
+}
+div.csc-textpic-intext-right-nowrap div.csc-gallery-nav,
+div.csc-textpic-intext-left-nowrap  div.csc-gallery-nav {
+	clear: none;
+}
+.csc-ctrl {
+	z-index: 1000;
+	position: absolute;
+	overflow: hidden;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.csc-box {
+	width: 25%;
+	height: 100%;
+	top: 0;
+	left: 50%;
+	background-position: center;
+	display: none;
+}
+.csc-box:hover {
+	background-image: url(images/box.gif);
+}
+.csc-play {
+	width: 25%;
+	height: 100%;
+	bottom: 0;
+	left: 25%;
+	background-position: center;
+	display: none;
+}
+.csc-textpic-imagewrap:hover .csc-ctrl {
+	display: block;
+	z-index: 1000;
+}
+.no-box {
+	width: 50%;
+}
+.csc-play:hover {
+	background-image: url(images/play.gif);
+}
+.csc-paused:hover {
+	background-image: url(images/pause.gif);
+}
+
+.csc-btn {
+	top: 0;
+	height: 100%;
+	width: 25%;
+	/*opacity: 0.6;*/
+}
+.csc-btn:hover {
+	/*opacity: 0.8;*/
+}
+.csc-prev {
+	left: 0;
+	background-image: url(images/prevlabel2.gif);
+	background-position: left center;
+}
+.csc-next {
+	right: 0;
+	background-image: url(images/nextlabel2.gif);
+	background-position: right center;
+}
+.csc-prev:hover {
+	background-image: url(images/prevlabel.gif);
+}
+.csc-next:hover {
+	background-image: url(images/nextlabel.gif);
+}
+
+#tip7-title { text-align: left; }
+
+#tip7-title b { display: block; }
+
+#tip7-title span { float: right; }
