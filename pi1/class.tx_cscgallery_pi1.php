@@ -107,9 +107,8 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 
 				//  @see http://sigi-schweizer.de/blog/2009/01/30/inline-javascript-und-css-typo3-extensions/
 			$inline2Tmpfile = TSpagegen::inline2TempFile($jsConf, 'js');
-			$jsInline = (empty ($this->conf['templateFile.']['includeInFooter'])) ? 'jsInline' : 'jsFooterInline';
-		##	$GLOBALS['TSFE']->pSetup[$jsInline . '.'][$this->extKey . 'inline'] = $inline2Tmpfile;
-			$GLOBALS['TSFE']->pSetup['includeJSFooter.'][$this->extKey . 'inline'] = $inline2Tmpfile;
+			$jsInline = (empty ($this->conf['templateFile.']['includeInFooter'])) ? 'includeJS' : 'includeJSFooter';
+			$GLOBALS['TSFE']->pSetup[$jsInline . '.'][$this->extKey . 'inline'] = $inline2Tmpfile;
 		}
 	}
 

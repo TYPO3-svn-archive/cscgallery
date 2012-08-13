@@ -13,7 +13,8 @@
 	$(document).ready(function() {
 			// add cycle navigation
 		var cscGalleryImagewraps = $('#c###UID### .csc-textpic .csc-textpic-imagewrap');
-		cscGalleryImagewraps.first().attr('id', 'gallery-slideshow###UID###').addClass('csc-gallery-slideshow');
+		cscGalleryImagewraps.parent().attr('id', 'gallery-slideshow###UID###').addClass('csc-gallery-slideshow');
+		cscGalleryImagewraps.first().attr('id', 'slideshow###UID###');
 		cscGalleryImagewraps.last().attr('id', 'nav###UID###').addClass('csc-gallery-nav csc-textpic-text');
 
 

@@ -97,7 +97,7 @@ div.csc-textpic-intext-left-nowrap  div.csc-gallery-nav {
 	background-position: center;
 	display: none;
 }
-.csc-textpic-imagewrap:hover .csc-ctrl {
+.csc-gallery-slideshow:hover .csc-ctrl {
 	display: block;
 	z-index: 1000;
 }
