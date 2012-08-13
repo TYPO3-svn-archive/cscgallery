@@ -7,8 +7,14 @@ tt_content.cscgallery_pi1 {
 	5 {
 		userFunc = tx_cscgallery_pi1->addHeaderData
 
-		templateFile = EXT:cscgallery/res/jquery.cycle.cscgallery.js
 		pathToJquery = EXT:cscgallery/res/jquery_core/jquery-1.8.0.min.js
+		pathToJquery {
+			includeInFooter = 1
+		}
+		templateFile = EXT:cscgallery/res/jquery.cycle.cscgallery.js
+		templateFile {
+			includeInFooter = 1
+		}
 
 		includeJS {
 		}
@@ -130,12 +136,14 @@ tt_content.cscgallery_pi1 {
 		imageStdWrapNoWidth.wrap >
 		imageStdWrapNoWidth.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-slideshow" id="gallery-slideshow{field:uid}" style="width:{register:imagewidth}px;"><div id="slideshow{field:uid}" class="slideshow">  | </div></div>
 
+/*
 		renderMethod = simple
 		rendering.simple {
 			imgTagStdWrap.wrap >
 			imgTagStdWrap.dataWrap = <div style="width:100%; height:{register:imageheight}px;"> | </div>
 			caption.wrap >
 		}
+*/
 	}
 
 
@@ -237,7 +245,7 @@ tt_content.cscgallery_pi1 {
 		layout.key = 0
 		layout.default.value = ###IMAGES###
 
-		renderMethod = ul
+	##	renderMethod = ul
 		rendering.ul.caption >
 
 		caption >

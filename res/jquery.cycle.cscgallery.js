@@ -11,6 +11,13 @@
 <!-- ###CSCGALLERY_PARTS### begin -->
 (function($){
 	$(document).ready(function() {
+			// add cycle navigation
+		var cscGalleryImagewraps = $('#c###UID### .csc-textpic .csc-textpic-imagewrap');
+		cscGalleryImagewraps.first().attr('id', 'gallery-slideshow###UID###').addClass('csc-gallery-slideshow');
+		cscGalleryImagewraps.last().attr('id', 'nav###UID###').addClass('csc-gallery-nav csc-textpic-text');
+
+
+
 			// vars
 		var useLightbox###UID###   = ###LIGHTBOX###;
 		var largectrls###UID###    = ###CTRLS###;

@@ -29,16 +29,6 @@
  */
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
-
-/*
- @ToDo: uherrmann, 2012-07-07
-		replace
-			$GLOBALS['TSFE']->additionalHeaderData
-		by
-			$GLOBALS['TSFE']->additionalFooterData
-		see http://www.traum-projekt.com/forum/112-typo3/128841-includejsfooter.html
-*/
-
 	//  checks if t3jquery is loaded
 if (t3lib_extMgm::isLoaded('t3jquery')) {
 	require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
@@ -81,7 +71,8 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 			tx_t3jquery::addJqJS();
 		} else {
 				// if none of the previous is true, you need to include your own library
-			$GLOBALS['TSFE']->additionalHeaderData['tx_cscgallery'] .= '<script src="'.$this->getPath($this->conf['pathToJquery']).'" type="text/javascript"></script>';
+			$includeJSlibs = (empty ($this->conf['pathToJquery.']['includeInFooter'])) ? 'includeJSlibs' : 'includeJSFooterlibs';
+			$GLOBALS['TSFE']->pSetup[$includeJSlibs . '.'][$this->extKey . 'jQueryCore'] = $this->conf['pathToJquery'];
 		}
 
 			//  include cycle + lightbox
@@ -116,7 +107,9 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 
 				//  @see http://sigi-schweizer.de/blog/2009/01/30/inline-javascript-und-css-typo3-extensions/
 			$inline2Tmpfile = TSpagegen::inline2TempFile($jsConf, 'js');
-		    $GLOBALS['TSFE']->additionalHeaderData['tx_cscgallery'] .= '<script type="text/javascript" src="' . $inline2Tmpfile . '"></script>';
+			$jsInline = (empty ($this->conf['templateFile.']['includeInFooter'])) ? 'jsInline' : 'jsFooterInline';
+		##	$GLOBALS['TSFE']->pSetup[$jsInline . '.'][$this->extKey . 'inline'] = $inline2Tmpfile;
+			$GLOBALS['TSFE']->pSetup['includeJSFooter.'][$this->extKey . 'inline'] = $inline2Tmpfile;
 		}
 	}
 
