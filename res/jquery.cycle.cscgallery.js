@@ -32,17 +32,24 @@
 		} else {
 			$ss###UID###.before('<a class="csc-ctrl csc-btn csc-prev hidden" href="">prev</a><a class="csc-ctrl csc-btn csc-next hidden" href="">next</a>');
 		}
-
 			// add interface lightbox
 		if (largectrls###UID### && !useLightbox###UID###) {
 			$ss###UID###.before('<a class="csc-ctrl csc-play no-box" href="">play</a>');
 		}
-
 			// add interface play|pause & lightbox
 		if (largectrls###UID### && useLightbox###UID###) {
 			$ss###UID###.before('<a class="csc-ctrl csc-play" href="">play</a>');
 			$ss###UID###.before('<a rel="lightbox###UID###" class="csc-ctrl csc-btn csc-box" id="csc-lightbox-###UID###" href="">box</a>');
 		}
+			//  fit height:
+			//  get max. image height
+		var maxSlideshowmageHeight = 0;
+		$('#slideshow###UID###').find('img').each(function() {
+			maxSlideshowmageHeight = ($(this).height() > maxSlideshowmageHeight) ? $(this).height() : maxSlideshowmageHeight;
+		});
+		cscGalleryImagewraps.parent().find('a.csc-ctrl').each(function() {
+			$(this).css('height', maxSlideshowmageHeight);
+		});
 
 			// remove single image from container
 		$ss###UID###.empty();
@@ -51,7 +58,7 @@
 		$('#nav###UID### a').each(function(index) {
 				// vars & objs
 			var ltbox = $(this).attr('rel');
-			var href = $(this).attr('href');
+			var href  = $(this).attr('href');
 			var title = $(this).attr('title');
 			if (title) {
 				title = ' title="'+title+'"';
@@ -77,7 +84,6 @@
 			} else {
 				$ss###UID###.append('<div style="width:100%; height:'+imageHeight+'px;"><img src="'+ltbox+'" /></div>');
 			}
-
 		});
 
 			// configure play/pause btn
@@ -93,6 +99,8 @@
 		});
 
 			// configure the slideshow
+			// Grand parent of image(s):
+		var gParentTagName = $('#nav###UID### img').parent('a').parent()[0].tagName;
 		$ss###UID###.cycle({
 			height            : ###HEIGHT###,
 			pauseOnPagerHover : 1,
@@ -104,7 +112,8 @@
 			manualTrump       : true,
 			pager             : '#nav###UID###',
 			pagerAnchorBuilder: function(idx, slide) {
-				return '#nav###UID### li:eq(' + idx + ') a';
+			//	return '#nav###UID### li:eq(' + idx + ') a';
+				return '#nav###UID### ' + gParentTagName + ':eq(' + idx + ') a';
 			},
 			after             : function (curr,next,opts) {
 				$('#csc-lightbox-###UID###').attr('alt', opts.currSlide);
@@ -114,10 +123,15 @@
 			// add keyboard functionality
 		$(document).keydown(function(e){
 			//alert (e.which);
-			if(e.which == 37 || e.which == 80){ $('.csc-prev').click();}
-			else if(e.which == 39 || e.which == 78){ $('.csc-next').click();}
-			else if(e.which == 32){ $('.csc-play').click();}
-			else return;
+			if (e.which == 37 || e.which == 80) {
+				$('.csc-prev').click();
+			} else if (e.which == 39 || e.which == 78) {
+				$('.csc-next').click();
+			} else if (e.which == 32) {
+				$('.csc-play').click();
+			} else {
+				return;
+			}
 		});
 
 			// init lightbox
