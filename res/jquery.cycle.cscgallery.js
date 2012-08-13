@@ -134,6 +134,9 @@
 			}
 		});
 
+			// work around: add first image link to lightbox
+		var firstImageUrl = $('#slideshow###UID### img').first().parent('a').attr('href');
+		$('a#csc-lightbox-###UID###').attr('href', firstImageUrl);
 			// init lightbox
 		$lbox###UID### = $("#slideshow###UID### a").fancybox({
 			cyclic          : 1,

@@ -130,13 +130,13 @@ tt_content.cscgallery_pi1 {
 		noRows >
 		noRows = 0
 
+/*
 		imageColumnStdWrap.dataWrap >
 		imageStdWrap.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-slideshow" id="gallery-slideshow{field:uid}" style="width:{register:totalwidth}px;"><div id="slideshow{field:uid}" class="slideshow"> | </div></div>
 
 		imageStdWrapNoWidth.wrap >
 		imageStdWrapNoWidth.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-slideshow" id="gallery-slideshow{field:uid}" style="width:{register:imagewidth}px;"><div id="slideshow{field:uid}" class="slideshow">  | </div></div>
 
-/*
 		renderMethod = simple
 		rendering.simple {
 			imgTagStdWrap.wrap >
@@ -236,10 +236,12 @@ tt_content.cscgallery_pi1 {
 			}
 		}
 
+/*
 		imageStdWrap.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-nav {register:singleViewOnly}" style="width:{register:totalwidth}px;" id="nav{field:uid}"> | </div>
 
 		imageStdWrapNoWidth.wrap >
 		imageStdWrapNoWidth.dataWrap = <div class="csc-textpic-imagewrap csc-gallery-nav" id="nav{field:uid}"> | </div>
+*/
 
 		layout.key >
 		layout.key = 0
