@@ -1,5 +1,4 @@
-
-page.includeLibs.tx_cscgallery_pi1 = EXT:cscgallery/pi1/class.tx_cscgallery_pi1.php
+includeLibs.tx_cscgallery_pi1 = EXT:cscgallery/pi1/class.tx_cscgallery_pi1.php
 
 tt_content.cscgallery_pi1 < tt_content.textpic
 tt_content.cscgallery_pi1 {
@@ -41,17 +40,18 @@ tt_content.cscgallery_pi1 {
 			}
 		}
 
-		singleheight      = 'auto'
-		useLightbox       = 0
-		autostart         = pause
-		singleViewOnly    = 0
-		timeout           = 0
-		largectrls        = 0
-		pause             = 1
-		showtitle         = 0
-
-		slideshow (
-		)
+		autostart      = {$tt_content.cscgallery_pi1.autostart}
+		cropscaling    = {$tt_content.cscgallery_pi1.cropscaling}
+		cyclespeed     = {$tt_content.cscgallery_pi1.cyclespeed}
+		largectrls     = {$tt_content.cscgallery_pi1.largectrls}
+		showtitle      = {$tt_content.cscgallery_pi1.showtitle}
+		singleViewOnly = {$tt_content.cscgallery_pi1.singleViewOnly}
+		thumbheight    = {$tt_content.cscgallery_pi1.thumbheight}
+		thumbwidth     = {$tt_content.cscgallery_pi1.thumbwidth}
+		pause          = 1
+		singleheight   = auto
+		timeout        = 0
+		useLightbox    = 0
 	}
 
 
@@ -78,6 +78,10 @@ tt_content.cscgallery_pi1 {
 						#if.isTrue.data = TSFE:register|cropscaling
 					}
 				}
+			}
+			params < tt_content.cscgallery_pi1.20.rowSpace
+			params {
+				stdWrap.wrap = style="margin-bottom: |px;"
 			}
 
 				// SLIDESHOW VIEW
@@ -248,7 +252,7 @@ tt_content.cscgallery_pi1 {
 		layout.default.value = ###IMAGES###
 
 	##	renderMethod = ul
-		rendering.ul.caption >
+	##	rendering.ul.caption >
 
 		caption >
 	}

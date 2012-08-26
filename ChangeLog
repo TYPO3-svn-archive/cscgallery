@@ -1,7 +1,13 @@
+2012-08-25 Ulfried Herrmann  <herrmann@die-netzmacher.de>
+	1.1.0
+	* UPD:  Backend adjustments
+	*       multiple galleries per page
+	*       minor layout adjustmens in frontend
+
 2012-08-12 Ulfried Herrmann  <herrmann@die-netzmacher.de>
 	1.0.0
 	* UPD:  Code revision
-	*       TCA cleaning (corresponding to tt_content image), compatibility up to TYPO3 6.0
+	*       TCA cleaning (corresponding to tt_content image), partial compatibility up to TYPO3 6.0
 	*       t3jquery integration
 	*       beta state
 

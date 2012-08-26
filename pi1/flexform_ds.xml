@@ -8,23 +8,53 @@
 		<canvas>
 			<ROOT>
 				<TCEforms type="array">
-					<sheetTitle>LLL:EXT:cscgallery/pi1/locallang.xml:ff.sheet.canvas</sheetTitle>
+					<sheetTitle>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.sheet.canvas</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<cropscaling>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.cropscaling</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.cropscaling</label>
 							<config>
-								<type>check</type>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.byTypoScript</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.inactive</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.active</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+								</items>
+								<default>-1</default>
 							</config>
 						</TCEforms>
 					</cropscaling>
 					<singleViewOnly>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.singleViewOnly</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.singleViewOnly</label>
 							<config>
-								<type>check</type>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.byTypoScript</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.inactive</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.active</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+								</items>
+								<default>-1</default>
 							</config>
 						</TCEforms>
 					</singleViewOnly>
@@ -34,13 +64,13 @@
 		<slideshow>
 			<ROOT>
 				<TCEforms type="array">
-					<sheetTitle>LLL:EXT:cscgallery/pi1/locallang.xml:ff.sheet.slideshow</sheetTitle>
+					<sheetTitle>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.sheet.slideshow</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<cyclespeed>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.cyclespeed</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.cyclespeed</label>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -53,9 +83,24 @@
 					</cyclespeed>
 					<autostart>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.autostart</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.autostart</label>
 							<config>
-								<type>check</type>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.byTypoScript</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.inactive</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.active</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+								</items>
+								<default>-1</default>
 							</config>
 						</TCEforms>
 					</autostart>
@@ -65,23 +110,53 @@
 		<controls>
 			<ROOT type="array">
 				<TCEforms type="array">
-					<sheetTitle>LLL:EXT:cscgallery/pi1/locallang.xml:ff.sheet.controls</sheetTitle>
+					<sheetTitle>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.sheet.controls</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<largectrls>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.largectrls</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.largectrls</label>
 							<config>
-								<type>check</type>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.byTypoScript</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.inactive</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.active</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+								</items>
+								<default>-1</default>
 							</config>
 						</TCEforms>
 					</largectrls>
 					<showtitle>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.showtitle</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.showtitle</label>
 							<config>
-								<type>check</type>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.byTypoScript</numIndex>
+										<numIndex index="1">-1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.inactive</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.general.active</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+								</items>
+								<default>-1</default>
 							</config>
 						</TCEforms>
 					</showtitle>
@@ -91,32 +166,30 @@
 		<thumbs>
 			<ROOT>
 				<TCEforms type="array">
-					<sheetTitle>LLL:EXT:cscgallery/pi1/locallang.xml:ff.sheet.thumbnails</sheetTitle>
+					<sheetTitle>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.sheet.thumbnails</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<thumbwidth>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.thumbwidth</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.thumbwidth</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
 								<max>4</max>
 								<eval>int</eval>
-								<checkbox>0</checkbox>
 								<default>0</default>
 							</config>
 						</TCEforms>
 					</thumbwidth>
 					<thumbheight>
 						<TCEforms>
-							<label>LLL:EXT:cscgallery/pi1/locallang.xml:ff.field.thumbheight</label>
+							<label>LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.thumbheight</label>
 							<config>
 								<type>input</type>
 								<size>4</size>
 								<max>4</max>
 								<eval>int</eval>
-								<checkbox>0</checkbox>
 								<default>0</default>
 							</config>
 						</TCEforms>

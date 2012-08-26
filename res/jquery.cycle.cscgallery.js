@@ -6,53 +6,77 @@
  *  TIMEOUT    [int]
  *  CTRLS      [bool]
  *  PAUSE      [bool]
+ *  SHOWTITLE  [bool]
+ *  ROWSPACE   [int]
  */
 
 <!-- ###CSCGALLERY_PARTS### begin -->
-(function($){
+jQuery(function($){
 	$(document).ready(function() {
-			// add cycle navigation
-		var cscGalleryImagewraps = $('#c###UID### .csc-textpic .csc-textpic-imagewrap');
-		cscGalleryImagewraps.parent().attr('id', 'gallery-slideshow###UID###').addClass('csc-gallery-slideshow');
-		cscGalleryImagewraps.first().attr('id', 'slideshow###UID###');
-		cscGalleryImagewraps.last().attr('id', 'nav###UID###').addClass('csc-gallery-nav csc-textpic-text');
-
+			// Add classes and ids
+		var cscGalleryImageOuterWrap = $('#c###UID### .csc-textpic');
+		var cscGalleryImageInnerWrap = $('#c###UID### .csc-textpic .csc-textpic-imagewrap');
+		cscGalleryImageOuterWrap.attr('id', 'gallery-slideshow###UID###').addClass('csc-gallery-slideshow');
+		if (cscGalleryImageOuterWrap.hasClass('csc-textpic-below')) {
+			cscGalleryImageInnerWrap.first().attr('id', 'nav###UID###').addClass('csc-gallery-nav csc-textpic-text');
+			cscGalleryImageInnerWrap.last().attr('id', 'slideshow###UID###').addClass('csc-gallery-slideshow-single');
+		} else {
+			cscGalleryImageInnerWrap.first().attr('id', 'slideshow###UID###').addClass('csc-gallery-slideshow-single');
+			cscGalleryImageInnerWrap.last().attr('id', 'nav###UID###').addClass('csc-gallery-nav csc-textpic-text');
+		}
 
 
 			// vars
 		var useLightbox###UID###   = ###LIGHTBOX###;
 		var largectrls###UID###    = ###CTRLS###;
-
 			// slideshow container
-		var $ss###UID###  = $('#slideshow###UID###');
+		var $ss###UID###           = $('#slideshow###UID###');
+
+			//  fit height:
+			//  get max. image height
+		var maxSlideshowImageHeight = 0;
+		var maxSlideshowImageWidth  = 0;
+		$ss###UID###.find('img').each(function() {
+			maxSlideshowImageHeight = ($(this).height() > maxSlideshowImageHeight) ? $(this).height() : maxSlideshowImageHeight;
+			maxSlideshowImageWidth  = ($(this).width()  > maxSlideshowImageWidth)  ? $(this).width()  : maxSlideshowImageWidth;
+		});
+	//	cscGalleryImageInnerWrap.parent().find('a.csc-ctrl').each(function() {
+	//		$(this).css('height', maxSlideshowImageHeight);
+	//	});
+
 
 			// add interface prev|next
+		$('#gallery-slideshow###UID###').prepend('<div class="csc-ctrl-wrap" style="height: ' + maxSlideshowImageHeight + 'px; width: ' + maxSlideshowImageWidth + 'px;"></div>');
+		$ss###UID###Wrap = $('#gallery-slideshow###UID### .csc-ctrl-wrap');
 		if (largectrls###UID###) {
-			$ss###UID###.before('<a class="csc-ctrl csc-btn csc-prev" href="">prev</a><a class="csc-ctrl csc-btn csc-next" href="">next</a>');
+			$ss###UID###Wrap.append('<a class="csc-ctrl csc-btn csc-prev" href="#">prev</a><a class="csc-ctrl csc-btn csc-next" href="#">next</a>');
 		} else {
-			$ss###UID###.before('<a class="csc-ctrl csc-btn csc-prev hidden" href="">prev</a><a class="csc-ctrl csc-btn csc-next hidden" href="">next</a>');
+			$ss###UID###Wrap.append('<a class="csc-ctrl csc-btn csc-prev hidden" href="#">prev</a><a class="csc-ctrl csc-btn csc-next hidden" href="#">next</a>');
 		}
 			// add interface lightbox
 		if (largectrls###UID### && !useLightbox###UID###) {
-			$ss###UID###.before('<a class="csc-ctrl csc-play no-box" href="">play</a>');
+			$ss###UID###Wrap.append('<a class="csc-ctrl csc-play no-box" href="#">play</a>');
 		}
 			// add interface play|pause & lightbox
 		if (largectrls###UID### && useLightbox###UID###) {
-			$ss###UID###.before('<a class="csc-ctrl csc-play" href="">play</a>');
-			$ss###UID###.before('<a rel="lightbox###UID###" class="csc-ctrl csc-btn csc-box" id="csc-lightbox-###UID###" href="">box</a>');
+			$ss###UID###Wrap.append('<a class="csc-ctrl csc-play" href="#">play</a>');
+			$ss###UID###Wrap.append('<a rel="lightbox###UID###" class="csc-ctrl csc-btn csc-box" id="csc-lightbox-###UID###" href="#">box</a>');
 		}
-			//  fit height:
-			//  get max. image height
-		var maxSlideshowmageHeight = 0;
-		$('#slideshow###UID###').find('img').each(function() {
-			maxSlideshowmageHeight = ($(this).height() > maxSlideshowmageHeight) ? $(this).height() : maxSlideshowmageHeight;
-		});
-		cscGalleryImagewraps.parent().find('a.csc-ctrl').each(function() {
-			$(this).css('height', maxSlideshowmageHeight);
-		});
+
 
 			// remove single image from container
-		$ss###UID###.empty();
+			// add css style (margin) due to csc settings
+		$ss###UID###.empty().css({
+			'height': maxSlideshowImageHeight + 'px',
+			'width':  maxSlideshowImageWidth + 'px',
+		});
+		$('.csc-textpic-above #slideshow###UID###').css({
+			'margin': '0 0 ###ROWSPACE###px',
+		});
+		$('.csc-textpic-below #slideshow###UID###').css({
+			'margin': '###ROWSPACE###px 0 0',
+		});
+
 
 			// build playlist from #nav ul li a
 		$('#nav###UID### a').each(function(index) {
@@ -61,7 +85,7 @@
 			var href  = $(this).attr('href');
 			var title = $(this).attr('title');
 			if (title) {
-				title = ' title="'+title+'"';
+				title = ' title="' + title + '"';
 			}
 			var imageHeight = '';
 			var rel = '';
@@ -80,9 +104,9 @@
 
 				// enable <a>-wrapping for lightbox
 			if (useLightbox###UID###) {
-				$ss###UID###.append('<div style="width:100%; height:'+imageHeight+'px;"><a href="'+this.href+'"'+rel+''+title+'><img src="'+ltbox+'" /></a></div>');
+				$ss###UID###.append('<div style="width:100%; height:' + imageHeight + 'px;"><a href="' + this.href + '"' + rel + '' + title + '><img src="' + ltbox + '" /></a></div>');
 			} else {
-				$ss###UID###.append('<div style="width:100%; height:'+imageHeight+'px;"><img src="'+ltbox+'" /></div>');
+				$ss###UID###.append('<div style="width:100%; height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
 			}
 		});
 
@@ -102,7 +126,7 @@
 			// Grand parent of image(s):
 		var gParentTagName = $('#nav###UID### img').parent('a').parent()[0].tagName;
 		$ss###UID###.cycle({
-			height            : ###HEIGHT###,
+			height            : '###HEIGHT###',
 			pauseOnPagerHover : 1,
 			timeout           : ###TIMEOUT###,
 			speed             : 'fast',
@@ -167,5 +191,5 @@
 			return false;
 		});
 	});
-})(jQuery)
+});
 <!-- ###CSCGALLERY_PARTS### end -->

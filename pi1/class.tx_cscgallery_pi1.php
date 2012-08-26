@@ -52,6 +52,7 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		'includeJS',
 		'includeJSFooter',
 	);
+	protected $lConf            = array();                            // conf array local used4
 
 	// -------------------------------------------------------------------------
 	/**
@@ -93,6 +94,7 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		$templateCode = $this->cObj->fileResource($this->conf['templateFile']);
 		$jsConf = $this->cObj->getSubpart($templateCode, '###CSCGALLERY_PARTS###');
 		if ($jsConf) {
+			$cscGalleryConf =& $GLOBALS['TSFE']->tmpl->setup['tt_content.']['cscgallery_pi1.'];
 			$markerArray = array(
 				'###UID###'        => $this->cObj->data['uid'],
 				'###LIGHTBOX###'   => $this->conf['useLightbox'],
@@ -102,13 +104,17 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 				'###CTRLS###'      => $this->conf['largectrls'],
 				'###PAUSE###'      => $this->conf['pause'],
 				'###SHOWTITLE###'  => $this->conf['showtitle'],
+
+			##	'###COLSPACE###'   => $cscGalleryConf['20.']['colSpace'],
+				'###ROWSPACE###'   => $cscGalleryConf['20.']['rowSpace'],
+			##	'###TEXTMARGIN###' => $cscGalleryConf['20.']['textMargin'],
 			);
 			$jsConf = $this->cObj->substituteMarkerArray($jsConf, $markerArray);
 
 				//  @see http://sigi-schweizer.de/blog/2009/01/30/inline-javascript-und-css-typo3-extensions/
 			$inline2Tmpfile = TSpagegen::inline2TempFile($jsConf, 'js');
 			$jsInline = (empty ($this->conf['templateFile.']['includeInFooter'])) ? 'includeJS' : 'includeJSFooter';
-			$GLOBALS['TSFE']->pSetup[$jsInline . '.'][$this->extKey . 'inline'] = $inline2Tmpfile;
+			$GLOBALS['TSFE']->pSetup[$jsInline . '.'][$this->extKey . 'inline' . $this->cObj->data['uid']] = $inline2Tmpfile;
 		}
 	}
 
@@ -129,7 +135,10 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		foreach ($piFlexForm['data'] as $sheet => $data) {
 			foreach ($data as $lang => $value) {
 				foreach ($value as $key => $val) {
-					$this->lConf[$key] = $this->pi_getFFvalue($piFlexForm, $key, $sheet);
+					$ffVal = $this->pi_getFFvalue($piFlexForm, $key, $sheet);
+					if ($ffVal != -1) {
+						$this->lConf[$key] = $ffVal;
+					}
 				}
 			}
 		}
@@ -140,33 +149,40 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		if ($this->cObj->data['imageheight']) {
 			$this->conf['singleheight'] = $this->cObj->data['imageheight'];
 		}
-		if ($this->lConf['largectrls']) {
+
+		if (isset ($this->lConf['largectrls'])) {
 			$this->conf['largectrls'] = $this->lConf['largectrls'];
 		}
-		if ($this->lConf['showtitle']) {
+		if (isset ($this->lConf['showtitle'])) {
 			$this->conf['showtitle'] = $this->lConf['showtitle'];
 		}
-		if ($this->lConf['cyclespeed']) {
+		if (!empty ($this->lConf['cyclespeed'])) {
 			$this->conf['timeout'] = $this->lConf['cyclespeed'];
 		}
 		if ($this->conf['largectrls']) {
 			$this->conf['pause'] = 0;
 		}
-		if ($this->lConf['autostart']) {
+		if (isset ($this->lConf['autostart'])) {
 			$this->conf['autostart'] = 'resume';
 		}
-		if ($this->lConf['singleViewOnly']) {
+		if (isset ($this->lConf['singleViewOnly'])) {
 			$GLOBALS['TSFE']->register['singleViewOnly'] = 'hidden';
 		}
-		if ($this->lConf['thumbwidth']) {
+		if (!empty ($this->lConf['thumbwidth'])) {
 			$GLOBALS['TSFE']->register['thumbwidth'] = $this->lConf['thumbwidth'];
 		}
-		if ($this->lConf['thumbheight']) {
+		if (!empty ($this->lConf['thumbheight'])) {
 			$GLOBALS['TSFE']->register['thumbheight'] = $this->lConf['thumbheight'];
 		}
-		if ($this->lConf['cropscaling']) {
+		if (!empty ($this->lConf['cropscaling'])) {
 			$GLOBALS['TSFE']->register['cropscaling'] = $this->lConf['cropscaling'];
 		}
+/*
+echo '<pre><b>$this->lConf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->lConf, 1) . '</pre>';
+echo '<pre><b>$this->conf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->conf, 1) . '</pre>';
+echo '<pre><b>$GLOBALS[TSFE]->register @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . htmlspecialchars(print_r($GLOBALS['TSFE']->register, 1)) . '</pre>';
+exit;
+*/
 	}
 
 

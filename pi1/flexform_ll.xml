@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin „cscgallery”</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="ff.sheet.canvas">Canvas</label>
+			<label index="ff.sheet.slideshow">Slideshow</label>
+			<label index="ff.sheet.controls">Controls</label>
+			<label index="ff.sheet.thumbnails">Thumbnails</label>
+
+			<label index="ff.general.byTypoScript">As per global configuration</label>
+			<label index="ff.general.inactive">No</label>
+			<label index="ff.general.active">Yes</label>
+
+			<label index="ff.field.autostart">Slideshow: Autostart</label>
+			<label index="ff.field.cropscaling">Crop Scaling: Adjust image with cropping and scaling to max image area</label>
+			<label index="ff.field.cyclespeed">Slideshow: Cycle Speed</label>
+			<label index="ff.field.largectrls">Control Buttons in Gallery: Show</label>
+			<label index="ff.field.showtitle">Title in Lightbox: Show</label>
+			<label index="ff.field.singleViewOnly">Thumnails: Don't display</label>
+			<label index="ff.field.thumbheight">Thumbnails: Height</label>
+			<label index="ff.field.thumbwidth">Thumbnails: Width</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="ff.sheet.controls">Steuerungen</label>
+
+			<label index="ff.general.byTypoScript">Entspr. globaler Konfiguration</label>
+			<label index="ff.general.inactive">Nein</label>
+			<label index="ff.general.active">Ja</label>
+
+			<label index="ff.field.cropscaling">Crop Scaling: Passe Bild (durch Zuschneiden) an maximale Bildfläche an</label>
+			<label index="ff.field.largectrls">Steuerschaltflächen: In Galerie anzeigen</label>
+			<label index="ff.field.showtitle">Bildtitel: In Lightbox anzeigen</label>
+			<label index="ff.field.singleViewOnly">Thumbnails: Nicht anzeigen</label>
+			<label index="ff.field.thumbheight">Thumbnails: Höhe</label>
+			<label index="ff.field.thumbwidth">Thumbnails: Breite</label>
+		</languageKey>
+	</data>
+</T3locallang>
