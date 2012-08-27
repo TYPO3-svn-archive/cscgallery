@@ -104,35 +104,48 @@ jQuery(function($){
 
 				// enable <a>-wrapping for lightbox
 			if (useLightbox###UID###) {
-				$ss###UID###.append('<div style="width:100%; height:' + imageHeight + 'px;"><a href="' + this.href + '"' + rel + '' + title + '><img src="' + ltbox + '" /></a></div>');
+				$ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" height:' + imageHeight + 'px;"><a href="' + this.href + '"' + rel + '' + title + '><img src="' + ltbox + '" /></a></div>');
 			} else {
-				$ss###UID###.append('<div style="width:100%; height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
+				$ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
 			}
 		});
 
+
+			// image caption (from title)
+		$('#nav###UID### img').each(function(index) {
+			var title = $(this).attr('title');
+			if (title) {
+				var target = $('#slideshow###UID### .slideshow-item' + index);
+				target.prepend('<div class="image-caption">' + title + '</div>');
+			}
+		});
+
+
 			// configure play/pause btn
-		$('.csc-play').click(function() {
+		$('#gallery-slideshow###UID### .csc-play').click(function() {
 			$(this).toggleClass('csc-paused');
-			$('.csc-btn').toggleClass('hidden');
+			$('#gallery-slideshow###UID### .csc-btn').toggleClass('hidden');
 			$ss###UID###.cycle('toggle');
 			return false;
 		}).hover(function () {
-			$ss###UID###.cycle('pause');
-			$(this).removeClass('csc-paused');
-			$('.csc-btn').removeClass('hidden');
+		//	$ss###UID###.cycle('pause');
+		//	$(this).removeClass('csc-paused');
+			$('#gallery-slideshow###UID### .csc-btn').removeClass('hidden');
 		});
 
 			// configure the slideshow
 			// Grand parent of image(s):
 		var gParentTagName = $('#nav###UID### img').parent('a').parent()[0].tagName;
+			// Slide show autostart state
+		var slideShowAutostart = '###AUTOSTART###';
 		$ss###UID###.cycle({
 			height            : '###HEIGHT###',
 			pauseOnPagerHover : 1,
 			timeout           : ###TIMEOUT###,
 			speed             : 'fast',
 			pause             : ###PAUSE###,
-			next              : '.csc-next',
-			prev              : '.csc-prev',
+			next              : '#gallery-slideshow###UID### .csc-next',
+			prev              : '#gallery-slideshow###UID### .csc-prev',
 			manualTrump       : true,
 			pager             : '#nav###UID###',
 			pagerAnchorBuilder: function(idx, slide) {
@@ -142,7 +155,11 @@ jQuery(function($){
 			after             : function (curr,next,opts) {
 				$('#csc-lightbox-###UID###').attr('alt', opts.currSlide);
 			}
-		}).cycle('###AUTOSTART###');
+		}).cycle(slideShowAutostart);
+		if (slideShowAutostart == 'resume') {
+				// play button active
+			$('#gallery-slideshow###UID### .csc-play').addClass('csc-paused');
+		}
 
 			// add keyboard functionality
 		$(document).keydown(function(e){

@@ -156,13 +156,16 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		if (isset ($this->lConf['showtitle'])) {
 			$this->conf['showtitle'] = $this->lConf['showtitle'];
 		}
+		if (!empty ($this->conf['cyclespeed'])) {
+			$this->conf['timeout'] = $this->conf['cyclespeed'];
+		}
 		if (!empty ($this->lConf['cyclespeed'])) {
 			$this->conf['timeout'] = $this->lConf['cyclespeed'];
 		}
 		if ($this->conf['largectrls']) {
 			$this->conf['pause'] = 0;
 		}
-		if (isset ($this->lConf['autostart'])) {
+		if (!empty ($this->lConf['autostart'])) {
 			$this->conf['autostart'] = 'resume';
 		}
 		if (isset ($this->lConf['singleViewOnly'])) {

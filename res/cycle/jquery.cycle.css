@@ -156,6 +156,20 @@ div.csc-textpic-intext-left-nowrap  div.csc-gallery-nav {
 	width: 50%;
 }
 
+.csc-gallery-slideshow-single .slideshow-item {
+	width: 100%;
+}
+.csc-gallery-slideshow-single .image-caption {
+	background: transparent url('images/bg.figcaption.png') repeat scroll center center;
+	bottom: 0;
+	color: #fff;
+	font-size: .91em;
+	left: 0;
+	padding: .75em 1.5em;
+	position: absolute;
+	width: 100%;
+}
+
 
 #tip7-title {
 	text-align: left;
