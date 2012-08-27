@@ -43,10 +43,11 @@ t3lib_extMgm::addToAllTCAtypes('tt_content', 'pi_flexform', $_EXTKEY . '_pi1', '
 	//  @ToDo: do it for TYPO3 6.0
 $pattern = '%--palette--;LLL:EXT:cms/locallang_ttc\.xml:palette.image_accessibility;image_accessibility\,%';
 $TCA['tt_content']['types']['cscgallery_pi1']['showitem']           = preg_replace($pattern, '', $TCA['tt_content']['types']['cscgallery_pi1']['showitem']);
-	//  remove image_link
-$TCA['tt_content']['palettes'][$_EXTKEY . '_imagezoom'] = $TCA['tt_content']['palettes']['imagelinks'];
-$pattern = '%\, image_link;LLL:EXT:cms/locallang_ttc\.xml:image_link_formlabel%';
-$TCA['tt_content']['palettes'][$_EXTKEY . '_imagezoom']['showitem'] = preg_replace($pattern, '', $TCA['tt_content']['palettes'][$_EXTKEY . '_imagezoom']['showitem']);
+	//  remove image_link: change palette 'imagelinks' with 'cscgallery_imagezoom'
+$TCA['tt_content']['palettes'][$_EXTKEY . '_imagezoom'] = array(
+	'canNotCollapse' => 1,
+	'showitem'       => 'image_zoom;LLL:EXT:cms/locallang_ttc.xml:image_zoom_formlabel',
+);
 $pattern = '%--palette--;LLL:EXT:cms/locallang_ttc.xml:palette\.imagelinks;imagelinks%';
 $replacement = '--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.imagelinks;' . $_EXTKEY . '_imagezoom';
 $TCA['tt_content']['types']['cscgallery_pi1']['showitem']           = preg_replace($pattern, $replacement, $TCA['tt_content']['types']['cscgallery_pi1']['showitem']);

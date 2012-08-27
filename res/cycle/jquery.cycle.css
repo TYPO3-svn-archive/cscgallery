@@ -167,6 +167,7 @@ div.csc-textpic-intext-left-nowrap  div.csc-gallery-nav {
 	left: 0;
 	padding: .75em 1.5em;
 	position: absolute;
+	text-align: left;
 	width: 100%;
 }
 

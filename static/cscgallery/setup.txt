@@ -183,6 +183,8 @@ tt_content.cscgallery_pi1 {
 					}
 				}
 			}
+			altText.field   = imagecaption
+			titleText.field = imagecaption
 
 			imageLinkWrap >
 			imageLinkWrap = 1
