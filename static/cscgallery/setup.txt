@@ -182,6 +182,15 @@ tt_content.cscgallery_pi1 {
 						if.isTrue.data = TSFE:register|thumbheight
 					}
 				}
+/*
+				titleText {
+					field = imagecaption
+					split {
+						token.char = 10
+						returnKey.data = register : IMAGE_NUM_CURRENT
+					}
+				}
+*/
 			}
 			altText.field   = imagecaption
 			titleText.field = imagecaption

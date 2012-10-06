@@ -15,3 +15,4 @@ tt_content.cscgallery_pi1 {
 	thumbheight    = 0
 		# cat = Content Image Gallery/dims/90;    type = int+;    label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.thumbwidth
 	thumbwidth     = 0
+}

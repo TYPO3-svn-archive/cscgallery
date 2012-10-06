@@ -81,11 +81,16 @@ jQuery(function($){
 			// build playlist from #nav ul li a
 		$('#nav###UID### a').each(function(index) {
 				// vars & objs
-			var ltbox = $(this).attr('rel');
-			var href  = $(this).attr('href');
-			var title = $(this).attr('title');
+			var ltbox   = $(this).attr('rel');
+			var href    = $(this).attr('href');
+			var title   = $(this).attr('title');
+			var ssTitle = '';
 			if (title) {
+					// for slide show image caption (from title)
+				var ssTitle = title;
+					// lightbox title
 				title = ' title="' + title + '"';
+			} else {
 			}
 			var imageHeight = '';
 			var rel = '';
@@ -108,15 +113,9 @@ jQuery(function($){
 			} else {
 				$ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
 			}
-		});
-
-
-			// image caption (from title)
-		$('#nav###UID### img').each(function(index) {
-			var title = $(this).attr('title');
-			if (title) {
-				var target = $('#slideshow###UID### .slideshow-item' + index);
-				target.prepend('<div class="image-caption">' + title + '</div>');
+			if (ssTitle != '') {
+					// slide show image caption (from title)
+				$('#slideshow###UID### .slideshow-item' + index).prepend('<div class="image-caption">' + ssTitle + '</div>');
 			}
 		});
 
