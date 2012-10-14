@@ -1,0 +1,20 @@
+/*
+tt_content.cscgallery_pi1 {
+        # cat = Content Image Gallery/cimage/20;  type = string;  label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.autostart
+    autostart      = pause
+        # cat = Content Image Gallery/cimage/10;  type = boolean; label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.cropscaling
+    cropscaling    = 0
+        # cat = Content Image Gallery/cimage/30;  type = int+;    label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.cyclespeed
+    cyclespeed    = 3000
+        # cat = Content Image Gallery/enable/40;  type = boolean; label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.largectrls
+    largectrls     = 1
+        # cat = Content Image Gallery/enable/50;  type = boolean; label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.showtitle
+    showtitle      = 1
+        # cat = Content Image Gallery/enable/70;  type = boolean; label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.singleViewOnly
+    singleViewOnly = 0
+        # cat = Content Image Gallery/dims/80;    type = int+;    label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.thumbheight
+    thumbheight    = 0
+        # cat = Content Image Gallery/dims/90;    type = int+;    label = LLL:EXT:cscgallery/pi1/flexform_ll.xml:ff.field.thumbwidth
+    thumbwidth     = 0
+}
+*/

@@ -56,5 +56,20 @@ $TCA['tt_content']['types']['cscgallery_pi1']['showitem']           = preg_repla
 /**
  * Add TypoScript
  */
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/cscgallery/', 'Gallery for CSC');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'static/cscgallery/',          'Gallery for CSC');
+
+
+/**
+ * Add Gallery to Organiser News
+ */
+t3lib_div::loadTCA('tx_org_news');
+	//  add type item
+$TCA['tx_org_news']['ctrl']['typeicons']['newsgallery'] = t3lib_extMgm::extRelPath($_EXTKEY) . 'res/ico/newsgallery.gif';
+$TCA['tx_org_news']['columns']['type']['config']['items']['newsgallery'] = array(
+	0 => 'LLL:EXT:' . $_EXTKEY . '/locallang_db.xml:tx_org_news.type.newsgallery',
+	1 => 'newsgallery',
+	2 => 'EXT:' . $_EXTKEY . '/res/ico/newsgallery.gif',
+);
+$TCA['tx_org_news']['types']['newsgallery']['showitem'] = $TCA['tx_org_news']['types']['news']['showitem'];
+t3lib_extMgm::addStaticFile($_EXTKEY, 'static/cscgallery_org_news/', 'Gallery for Organiser News');
 ?>

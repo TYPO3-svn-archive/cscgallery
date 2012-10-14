@@ -9,11 +9,15 @@
 			<label index="tt_content.CType_pi1">Image Gallery</label>
 			<label index="tt_content.imageorient.25">Beside right</label>
 			<label index="tt_content.imageorient.26">Beside left</label>
+
+			<label index="tx_org_news.type.newsgallery">Photo Series News</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tt_content.CType_pi1">Bildergalerie/Fotostrecke</label>
 			<label index="tt_content.imageorient.25">Seitlich rechts</label>
 			<label index="tt_content.imageorient.26">Seitlich links</label>
+
+			<label index="tx_org_news.type.newsgallery">Nachricht als Fotostrecke</label>
 		</languageKey>
 	</data>
 </T3locallang>
