@@ -38,6 +38,14 @@ tt_content.cscgallery_pi1 {
 				media                    = screen
 				excludeFromConcatenation = 1
 			}
+                //  fix wrong ie7 behavior
+			ie7fix = EXT:cscgallery/res/cycle/styles/ielt8.css
+			ie7fix {
+				media                    = screen
+				excludeFromConcatenation = 1
+				allWrap                  = <!--[if lte IE 7]>|<![endif]-->
+				if.isTrue                = {$tt_content.cscgallery_pi1.ie7fix}
+			}
 		}
 
 		autostart      = {$tt_content.cscgallery_pi1.autostart}

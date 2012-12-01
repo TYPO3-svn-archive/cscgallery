@@ -1,166 +1,284 @@
-plugin.tx_browser_pi1.views.single.401.tx_org_news.title {
-	newsgallery < tt_content.cscgallery_pi1
-	newsgallery.20 {
-		1 {
-			file {
-				width                         >
-				width                         = ###TX_ORG_NEWS.IMAGEWIDTH###
-				width.override.cObject.field  >
-				width.override.cObject.value  = ###TX_ORG_NEWS.IMAGEWIDTH###
-				height                        >
-				height                        = ###TX_ORG_NEWS.IMAGEHEIGHT###
-				height.override.cObject.field >
-				height.override.cObject.value = ###TX_ORG_NEWS.IMAGEHEIGHT###
-			}
-			altText.field               >
-			altText.value               = ###TX_ORG_NEWS.IMAGESEO###
-			titleText.field             >
-			titleText.value             = ###TX_ORG_NEWS.IMAGESEO###
-			titleText.override.field    >
-			titleText.override          = ###TX_ORG_NEWS.IMAGECAPTION###
-			longdescURL                 >
-			imageLinkWrap {
-				enable.field                            >
-				enable                                  = ###TX_ORG_NEWS.IMAGE_ZOOM###
-				enable.ifEmpty.typolink.parameter.field >
-				enable.ifEmpty.typolink.parameter       = ###TX_ORG_NEWS.IMAGE_LINK###
-				typolink {
-					parameter.override.typolink.parameter.field >
-					parameter.override.typolink.parameter       = ###TX_OX_ORG_NEWS.IMAGE_LINK###
-					parameter.override.if.isTrue                >
-					parameter.override.if.isTrue                = ###TX_OX_ORG_NEWS.IMAGE_LINK###
-					ATagParams.if.isTrue                        >
-					ATagParams.if.isTrue                        = ###TX_OX_ORG_NEWS.IMAGE_ZOOM###
-				}
-			}
-		}
-		imgList                                       >
-		imgList                                       = ###TX_ORG_NEWS.IMAGE###
-		textPos                                       >
-		textPos                                       = ###TX_ORG_NEWS.IMAGEORIENT###
-		maxWInText.override                           >
-		maxWInText.override                           = ###TX_ORG_NEWS.IMAGEWIDTH###
-		equalH.field                                  >
-		equalH                                        = ###TX_ORG_NEWS.IMAGEHEIGHT###
-		image_compression                             >
-		image_compression                             = ###TX_ORG_NEWS.IMAGE_COMPRESSION###
-		image_effects                                 >
-		image_effects                                 = ###TX_ORG_NEWS.IMAGE_EFFECTS###
-		border                                        >
-		border                                        = ###TX_ORG_NEWS.IMAGEBORDER###
-		caption.1.1.field                             >
-		caption.1.1.value                             = ###TX_ORG_NEWS.IMAGECAPTION###
-			// longdescurl:
-		caption.1.stdWrap                             >
-		captionAlign                                  >
-		captionAlign                                  = ###TX_ORG_NEWS.IMAGECAPTION_POSITION###
-		addClassesCol.override.if.isGreaterThan.field >
-		addClassesCol.override.if.isGreaterThan.value = ###TX_ORG_NEWS.IMAGECOLS###
-		layout.key                                    >
-		layout.key                                    = ###TX_ORG_NEWS.IMAGEORIENT###
-		rendering {
-			singleNoCaption {
-				fallbackRendering {
-					10.if.isTrue        >
-					10.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
-					20.if.isTrue.field  >
-					20.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
-					30.if.isTrue.field  >
-					30.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
-					40.if.isFalse       >
-					40.if.isFalse       = ###TX_ORG_NEWS.IMAGECAPTION###
-				}
-				allStdWrap.innerWrap.cObject.key >
-				allStdWrap.innerWrap.cObject.key = ###TX_ORG_NEWS.IMAGEORIENT###
-			}
-			noCaption.fallbackRendering.if.isTrue     >
-			noCaption.fallbackRendering.if.isTrue     = ###TX_ORG_NEWS.IMAGECAPTION###
-			singleCaption.fallbackRendering.if.isTrue >
-			singleCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
-			splitCaption.fallbackRendering.if.isTrue  >
-			splitCaption.fallbackRendering.if.isTrue  = ###TX_ORG_NEWS.IMAGECAPTION###
-			globalCaption.fallbackRendering.if.isTrue >
-			globalCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
-		}
+plugin.tx_browser_pi1.views {
+	list.401.tx_org_news {
+	  title {
+			10 {
+				newsgallery < .default
+				newsgallery {
+					30 = COA
+					30 {
+						10 = IMAGE
+						10 {
+							file = GIFBUILDER
+							file {
+							#	XY = [10.w]+10 ,{$styles.header.gfx1.itemH}
+								format  = png
+							#	quality = 100
+								XY = 620, 124
+								backColor = #dadada
+								10 = IMAGE
+								10 {
+									file {
+										import = uploads/tx_org/
+										import {
+											cObject = TEXT
+											cObject {
+												value = ###TX_ORG_NEWS.IMAGE###
+												split {
+													token = ,
+													returnKey = 0
+												}
+											}
+										}
+										width  = 122c
+										height < .width
+									}
+									offset = 1, 1
+								}
+								15 = BOX
+								15 {
+									dimensions = 1 + 122, 0, 2, 122
+									color = #dadada
+								}
+								20 < .10
+								20 {
+									file.import.cObject.split.returnKey = 1
+									offset = 1 + 122 + 2, 1
+								}
+								25 < .15
+								25.dimensions = 1 + 122 + 2 + 122, 0, 2, 122
+								30 < .10
+								30 {
+									file.import.cObject.split.returnKey = 2
+									offset = 1 + 122 + 2 + 122 + 2, 1
+								}
+								35 < .15
+								35.dimensions = 1 + 122 + 2 + 122 + 2 + 122, 0, 2, 122
+								40 < .10
+								40 {
+									file.import.cObject.split.returnKey = 3
+									offset = 1 + 122 + 2 + 122 + 2 + 122 + 2, 1
+								}
+								45 < .15
+								45.dimensions = 1 + 122 + 2 + 122 + 2 + 122 + 2 + 122, 0, 2, 122
+								50 < .10
+								50 {
+									file.import.cObject.split.returnKey = 4
+									offset = 1 + 122 + 2 + 122 + 2 + 122 + 2 + 122 + 2, 1
+								}
+							}
 
-
-
-
-
-		text.20 {
-			1 {
-				file.width.field                        >
-				file.width                              = ###TX_ORG_NEWS.IMAGEWIDTH###
-				altText.field                           >
-				altText.value                           = ###TX_ORG_NEWS.IMAGECAPTION###
-				params.override.if.isTrue.cObject.field >
-				params.override.if.isTrue.cObject.value = ###TX_ORG_NEWS.IMAGECAPTION###
-					//  LONGDESCURL
-				params.override.if.isFalse              >
-				longdescURL                             >
-				titleText.field                         >
-				titleText.value                         = ###TX_ORG_NEWS.IMAGESEO###
-				titleText.override.field                >
-				titleText.override                      = ###TX_ORG_NEWS.IMAGESEO###
-				imageLinkWrap {
-					enable.ifEmpty.typolink.parameter.field >
-					enable.ifEmpty.typolink.parameter       = ###TX_ORG_NEWS.image_link###
-					typolink {
-						parameter.override.typolink.parameter.field            >
-						parameter.override.typolink.parameter                  = ###TX_ORG_NEWS.IMAGE_LINK###
-						parameter.override.if.isTrue                           >
-						parameter.override.if.isTrue                           = ###TX_ORG_NEWS.IMAGE_LINK###
-						title.field                                            >
-						title                                                  = ###TX_ORG_NEWS.IMAGECAPTION###
-						ATagParams.cObject.file.width                          >
-						ATagParams.cObject.file.width                          = ###TX_ORG_NEWS.IMAGEWIDTH###
-						ATagParams.cObject.file.height.stdWrap.cObject.5.field >
-						ATagParams.cObject.file.height.stdWrap.cObject.5.value = ###TX_ORG_NEWS.IMAGEHEIGHT###
+							params        = class="newsgallery-preview"
+							imageLinkWrap = 1
+							imageLinkWrap {
+								enable = 1
+								typolink < plugin.tx_browser_pi1.views.list.401.tx_org_news.title.10.newsgallery.10.typolink
+							}
+						}
 					}
 				}
 			}
-			imgList           >
-			imgList           = ###TX_ORG_NEWS.IMAGE###
-			textPos           >
-			textPos           = ###TX_ORG_NEWS.IMAGEORIENT###
-			image_compression >
-			image_compression = ###TX_ORG_NEWS.IMAGE_COMPRESSION###
-			image_effects     >
-			image_effects     = ###TX_ORG_NEWS.IMAGE_EFFECTS###
-			noRows            >
-			noRows            = ###TX_ORG_NEWS.IMAGE_NOROWS###
-			cols              >
-			cols              = ###TX_ORG_NEWS.IMAGECOLS###
-			border            >
-			border            = ###TX_ORG_NEWS.IMAGEBORDER###
-			captionAlign      >
-			captionAlign      = ###TX_ORG_NEWS.IMAGECAPTION_POSITION###
-			addClassesCol.override.if.isGreaterThan >
-			addClassesCol.override.if.isGreaterThan = ###TX_ORG_NEWS.IMAGECOLS###
-			rendering {
-				singleNoCaption {
-					fallbackRendering {
-						10.if.isTrue        >
-						10.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
-						20.if.isTrue.field  >
-						20.if.isTrue.       = ###TX_ORG_NEWS.IMAGECAPTION###
-						30.if.isTrue.field  >
-						30.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
-						40.if.isFalse       >
-						40.if.isFalse       = ###TX_ORG_NEWS.IMAGECAPTION###
-					}
-					allStdWrap.innerWrap.cObject.key >
-					allStdWrap.innerWrap.cObject.key = ###TX_ORG_NEWS.IMAGEORIENT###
+
+			11.newsgallery < .10.newsgallery
+		}
+	}
+	single.401.tx_org_news.title {
+		newsgallery < tt_content.cscgallery_pi1
+		newsgallery {
+			5 {
+				cObj.data {
+					uid = ###TX_ORG_NEWS.UID###
 				}
-				noCaption.fallbackRendering.if.isTrue     >
-				noCaption.fallbackRendering.if.isTrue     = ###TX_ORG_NEWS.IMAGECAPTION###
-				singleCaption.fallbackRendering.if.isTrue >
-				singleCaption.fallbackRendering.if.isTrue = ###TX ORG_NEWS.IMAGECAPTION###
-				splitCaption.fallbackRendering.if.isTrue  >
-				splitCaption.fallbackRendering.if.isTrue  = ###TX_ORG_NEWS.IMAGECAPTION###
-				globalCaption.fallbackRendering.if.isTrue >
-				globalCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
 			}
+			20 {
+				1 {
+					imgList.field >
+					imgList = ###TX_ORG_NEWS.IMAGE###
+					imgPath = uploads/tx_org/
+					file {
+						width                         >
+						width                         = ###TX_ORG_NEWS.IMAGEWIDTH###
+						width.override.cObject.field  >
+						width.override.cObject.value  = ###TX_ORG_NEWS.IMAGEWIDTH###
+						height                        >
+						height                        = ###TX_ORG_NEWS.IMAGEHEIGHT###
+						height.override.cObject.field >
+						height.override.cObject.value = ###TX_ORG_NEWS.IMAGEHEIGHT###
+					}
+					altText.field               >
+					altText                     = ###TX_ORG_NEWS.IMAGESEO###
+					titleText.field             >
+					titleText                   = ###TX_ORG_NEWS.IMAGESEO###
+					##  titleText.override.field    >
+					##  titleText.override          = ###TX_ORG_NEWS.IMAGECAPTION###
+					longdescURL                 >
+					imageLinkWrap {
+						enable.field                            >
+						enable                                  = ###TX_ORG_NEWS.IMAGE_ZOOM###
+						enable.ifEmpty.typolink.parameter.field >
+						enable.ifEmpty.typolink.parameter       = ###TX_ORG_NEWS.IMAGE_LINK###
+						typolink {
+							parameter.override.typolink.parameter.field >
+							parameter.override.typolink.parameter       = ###TX_OX_ORG_NEWS.IMAGE_LINK###
+							parameter.override.if.isTrue                >
+							parameter.override.if.isTrue                = ###TX_OX_ORG_NEWS.IMAGE_LINK###
+							ATagParams.if.isTrue                        >
+							ATagParams.if.isTrue                        = ###TX_OX_ORG_NEWS.IMAGE_ZOOM###
+						}
+					}
+				}
+				imgList                 >
+				imgList                 = ###TX_ORG_NEWS.IMAGE###
+				imgPath                 = uploads/tx_org/
+
+				textPos                 >
+				textPos                 = ###TX_ORG_NEWS.IMAGEORIENT###
+				maxW {
+					cObject.key.field   >
+					cObject.key         = ###TX_ORG_NEWS.COLPOS###
+				}
+				maxWInText {
+					cObject.key.field   >
+					cObject.key         = ###TX_ORG_NEWS.COLPOS###
+					override            >
+					override            = ###TX_ORG_NEWS.IMAGEWIDTH###
+				}
+				equalH.field            >
+				equalH                  = ###TX_ORG_NEWS.IMAGEHEIGHT###
+				image_compression       >
+				image_compression       = ###TX_ORG_NEWS.IMAGE_COMPRESSION###
+				image_effects           >
+				image_effects           = ###TX_ORG_NEWS.IMAGE_EFFECTS###
+				border                  >
+				border                  = ###TX_ORG_NEWS.IMAGEBORDER###
+				caption.1.1.field       >
+				caption.1.1.value       = ###TX_ORG_NEWS.IMAGECAPTION###
+				// longdescurl:
+				caption.1.stdWrap       >
+				captionAlign            >
+				captionAlign            = ###TX_ORG_NEWS.IMAGECAPTION_POSITION###
+				addClassesCol.override {
+					if.isGreaterThan.field >
+					if.isGreaterThan.value = ###TX_ORG_NEWS.IMAGECOLS###
+				}
+				layout.key              >
+				layout.key              = ###TX_ORG_NEWS.IMAGEORIENT###
+				rendering {
+					singleNoCaption {
+						fallbackRendering {
+							10.if.isTrue        >
+							10.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
+							20.if.isTrue.field  >
+							20.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
+							30.if.isTrue.field  >
+							30.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
+							40.if.isFalse       >
+							40.if.isFalse       = ###TX_ORG_NEWS.IMAGECAPTION###
+						}
+						allStdWrap.innerWrap.cObject.key >
+						allStdWrap.innerWrap.cObject.key = ###TX_ORG_NEWS.IMAGEORIENT###
+					}
+					noCaption.fallbackRendering.if.isTrue     >
+					noCaption.fallbackRendering.if.isTrue     = ###TX_ORG_NEWS.IMAGECAPTION###
+					singleCaption.fallbackRendering.if.isTrue >
+					singleCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
+					splitCaption.fallbackRendering.if.isTrue  >
+					splitCaption.fallbackRendering.if.isTrue  = ###TX_ORG_NEWS.IMAGECAPTION###
+					globalCaption.fallbackRendering.if.isTrue >
+					globalCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
+				}
+				text.20 {
+					1 {
+						file.width.field                        >
+						file.width                              = ###TX_ORG_NEWS.IMAGEWIDTH###
+						altText.field                           >
+						altText                                 = ###TX_ORG_NEWS.IMAGECAPTION###
+						params.override.if.isTrue.cObject.field >
+						params.override.if.isTrue.cObject.value = ###TX_ORG_NEWS.IMAGECAPTION###
+						//  LONGDESCURL
+						params.override.if.isFalse              >
+						longdescURL                             >
+
+						titleText.field                         >
+						titleText                               = ###TX_ORG_NEWS.IMAGESEO###
+						#  titleText.override.field                >
+						#  titleText.override                      = ###TX_ORG_NEWS.IMAGESEO###
+						imageLinkWrap {
+							enable.ifEmpty.typolink.parameter.field >
+							enable.ifEmpty.typolink.parameter   = ###TX_ORG_NEWS.IMAGE_LINK###
+							typolink {
+								parameter.override.typolink.parameter.field            >
+								parameter.override.typolink.parameter                  = ###TX_ORG_NEWS.IMAGE_LINK###
+								parameter.override.if.isTrue                           >
+								parameter.override.if.isTrue                           = ###TX_ORG_NEWS.IMAGE_LINK###
+								title.field                                            >
+								title                                                  = ###TX_ORG_NEWS.IMAGECAPTION###
+								ATagParams.cObject.file.width                          >
+								ATagParams.cObject.file.width                          = ###TX_ORG_NEWS.IMAGEWIDTH###
+								ATagParams.cObject.file.height.stdWrap.cObject.5.field >
+								ATagParams.cObject.file.height.stdWrap.cObject.5.value = ###TX_ORG_NEWS.IMAGEHEIGHT###
+							}
+						}
+					}
+					imgList           >
+					imgList           = ###TX_ORG_NEWS.IMAGE###
+					imgPath           = uploads/tx_org/
+
+					textPos           >
+					textPos           = ###TX_ORG_NEWS.IMAGEORIENT###
+					maxW.cObject.key  >
+					maxW.cObject.key  = ###TX_ORG_NEWS.COLPOS###
+					maxWInText {
+						cObject.key   >
+						cObject.key   = ###TX_ORG_NEWS.COLPOS###
+					}
+					image_compression >
+					image_compression = ###TX_ORG_NEWS.IMAGE_COMPRESSION###
+					image_effects     >
+					image_effects     = ###TX_ORG_NEWS.IMAGE_EFFECTS###
+					noRows            >
+					noRows            = ###TX_ORG_NEWS.IMAGE_NOROWS###
+					cols              >
+					cols              = ###TX_ORG_NEWS.IMAGECOLS###
+					border            >
+					border            = ###TX_ORG_NEWS.IMAGEBORDER###
+					captionAlign      >
+					captionAlign      = ###TX_ORG_NEWS.IMAGECAPTION_POSITION###
+					addClassesCol.override.if.isGreaterThan >
+					addClassesCol.override.if.isGreaterThan = ###TX_ORG_NEWS.IMAGECOLS###
+					rendering {
+						singleNoCaption {
+							fallbackRendering {
+								10.if.isTrue        >
+								10.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
+								20.if.isTrue.field  >
+								20.if.isTrue.       = ###TX_ORG_NEWS.IMAGECAPTION###
+								30.if.isTrue.field  >
+								30.if.isTrue        = ###TX_ORG_NEWS.IMAGECAPTION###
+								40.if.isFalse       >
+								40.if.isFalse       = ###TX_ORG_NEWS.IMAGECAPTION###
+							}
+							allStdWrap.innerWrap.cObject.key >
+							allStdWrap.innerWrap.cObject.key = ###TX_ORG_NEWS.IMAGEORIENT###
+						}
+						noCaption.fallbackRendering.if.isTrue     >
+						noCaption.fallbackRendering.if.isTrue     = ###TX_ORG_NEWS.IMAGECAPTION###
+						singleCaption.fallbackRendering.if.isTrue >
+						singleCaption.fallbackRendering.if.isTrue = ###TX ORG_NEWS.IMAGECAPTION###
+						splitCaption.fallbackRendering.if.isTrue  >
+						splitCaption.fallbackRendering.if.isTrue  = ###TX_ORG_NEWS.IMAGECAPTION###
+						globalCaption.fallbackRendering.if.isTrue >
+						globalCaption.fallbackRendering.if.isTrue = ###TX_ORG_NEWS.IMAGECAPTION###
+					}
+				}
+			}
+			30 < tt_content.text.20
+			30 {
+				field >
+				value = ###TX_ORG_NEWS.BODYTEXT###
+				wrap  >
+				wrap  = <div class="csc-textpic-text">|</div>
+			}
+			wrap = <div id="c###TX_ORG_NEWS.UID###">|</div>
 		}
 	}
 }

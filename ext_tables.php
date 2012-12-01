@@ -3,6 +3,7 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+require_once t3lib_extMgm::extPath($_EXTKEY, $script = 'lib/class.tx_scsgallery_tcahelper.php');
 
 
 /**
@@ -27,8 +28,6 @@ foreach ($TCA['tt_content']['columns']['CType']['config']['items'] as $iVal) {
 	//  replace present items array by extended array
 $TCA['tt_content']['columns']['CType']['config']['items'] = $ttcCTypeItems;
 
-
-
 /**
  * Configure plugin / BE form
  */
@@ -52,16 +51,18 @@ $pattern = '%--palette--;LLL:EXT:cms/locallang_ttc.xml:palette\.imagelinks;image
 $replacement = '--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.imagelinks;' . $_EXTKEY . '_imagezoom';
 $TCA['tt_content']['types']['cscgallery_pi1']['showitem']           = preg_replace($pattern, $replacement, $TCA['tt_content']['types']['cscgallery_pi1']['showitem']);
 
-
 /**
  * Add TypoScript
  */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/cscgallery/',          'Gallery for CSC');
 
 
+
+
 /**
  * Add Gallery to Organiser News
  */
+if (t3lib_extMgm::isLoaded('org')) {
 t3lib_div::loadTCA('tx_org_news');
 	//  add type item
 $TCA['tx_org_news']['ctrl']['typeicons']['newsgallery'] = t3lib_extMgm::extRelPath($_EXTKEY) . 'res/ico/newsgallery.gif';
@@ -71,5 +72,15 @@ $TCA['tx_org_news']['columns']['type']['config']['items']['newsgallery'] = array
 	2 => 'EXT:' . $_EXTKEY . '/res/ico/newsgallery.gif',
 );
 $TCA['tx_org_news']['types']['newsgallery']['showitem'] = $TCA['tx_org_news']['types']['news']['showitem'];
+##	$TCA['tx_org_news']['types']['newsgallery']['showitem'] = tx_scsgallery_tcahelper::TCAremoveFromShowitem('bodytext', $TCA['tx_org_news']['types']['newsgallery']['showitem']);
+	$TCA['tx_org_news']['types']['newsgallery']['showitem'] = tx_scsgallery_tcahelper::TCAremoveFromShowitem('teaser_short', $TCA['tx_org_news']['types']['newsgallery']['showitem']);
+	$TCA['tx_org_news']['types']['newsgallery']['showitem'] = tx_scsgallery_tcahelper::TCAremoveFromShowitem('--palette--;LLL:EXT:cms/locallang_ttc.xml:media;documents_upload', $TCA['tx_org_news']['types']['newsgallery']['showitem']);
+	$TCA['tx_org_news']['types']['newsgallery']['showitem'] = tx_scsgallery_tcahelper::TCAremoveFromShowitem('--palette--;LLL:EXT:org/locallang_db.xml:palette.appearance', $TCA['tx_org_news']['types']['newsgallery']['showitem']);
+	$TCA['tx_org_news']['types']['newsgallery']['showitem'] = tx_scsgallery_tcahelper::TCAremoveFromShowitem('embeddedcode', $TCA['tx_org_news']['types']['newsgallery']['showitem']);
+
+	/**
+	 * Add TypoScript
+	 */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/cscgallery_org_news/', 'Gallery for Organiser News');
+}
 ?>

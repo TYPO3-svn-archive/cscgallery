@@ -54,6 +54,8 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 	);
 	protected $lConf            = array();                            // conf array local used4
 
+
+
 	// -------------------------------------------------------------------------
 	/**
 	 * Main method of the PlugIn
@@ -65,6 +67,9 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 	function addHeaderData($content, $conf) {
 			//  prepare Plugin config
 		$this->prepareConfig($conf);
+##if ($_SERVER['REMOTE_ADDR'] == '141.54.158.70') {
+##echo '<pre><b>$this->cObj @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->cObj, 1) . '</pre>'; exit;
+##}
 
 			//  include jQuery core
 			//  if t3jquery is loaded and the custom Library had been created
@@ -109,6 +114,9 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 				'###ROWSPACE###'   => $cscGalleryConf['20.']['rowSpace'],
 			##	'###TEXTMARGIN###' => $cscGalleryConf['20.']['textMargin'],
 			);
+#echo '<pre><b>$this->conf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->conf, 1) . '</pre>';
+#echo '<pre><b>$markerArray @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($markerArray, 1) . '</pre>';
+#exit;
 			$jsConf = $this->cObj->substituteMarkerArray($jsConf, $markerArray);
 
 				//  @see http://sigi-schweizer.de/blog/2009/01/30/inline-javascript-und-css-typo3-extensions/
@@ -129,19 +137,20 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 	 */
 	protected function prepareConfig(&$conf) {
 		$this->conf = $conf;
-		$this->pi_initPIflexForm();
-		$piFlexForm = $this->cObj->data['pi_flexform'];
 
-		foreach ($piFlexForm['data'] as $sheet => $data) {
-			foreach ($data as $lang => $value) {
-				foreach ($value as $key => $val) {
-					$ffVal = $this->pi_getFFvalue($piFlexForm, $key, $sheet);
-					if ($ffVal != -1) {
-						$this->lConf[$key] = $ffVal;
-					}
-				}
-			}
+		if (!empty ($this->conf['cyclespeed'])) {
+			$this->conf['timeout'] = $this->conf['cyclespeed'];
 		}
+		if (!empty ($this->conf['cObj.']['data.'])) {
+				//  gallery from tx_org_news
+			$this->prepareConfig4tx_org_news();
+		} else {
+				//  gallery from tt_content
+			$this->prepareConfig4tt_content();
+		}
+##if ($_SERVER['REMOTE_ADDR'] == '141.54.158.70') {
+##echo '<pre><b>$this->conf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->conf, 1) . '</pre>';
+##}
 
 		if ($this->cObj->data['image_zoom']) {
 			$this->conf['useLightbox'] = 1;
@@ -150,18 +159,6 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 			$this->conf['singleheight'] = $this->cObj->data['imageheight'];
 		}
 
-		if (isset ($this->lConf['largectrls'])) {
-			$this->conf['largectrls'] = $this->lConf['largectrls'];
-		}
-		if (isset ($this->lConf['showtitle'])) {
-			$this->conf['showtitle'] = $this->lConf['showtitle'];
-		}
-		if (!empty ($this->conf['cyclespeed'])) {
-			$this->conf['timeout'] = $this->conf['cyclespeed'];
-		}
-		if (!empty ($this->lConf['cyclespeed'])) {
-			$this->conf['timeout'] = $this->lConf['cyclespeed'];
-		}
 		if ($this->conf['largectrls']) {
 			$this->conf['pause'] = 0;
 		}
@@ -171,21 +168,88 @@ class tx_cscgallery_pi1 extends tslib_pibase {
 		if (isset ($this->lConf['singleViewOnly'])) {
 			$GLOBALS['TSFE']->register['singleViewOnly'] = 'hidden';
 		}
-		if (!empty ($this->lConf['thumbwidth'])) {
-			$GLOBALS['TSFE']->register['thumbwidth'] = $this->lConf['thumbwidth'];
+		if (!empty ($this->conf['thumbwidth'])) {
+			$GLOBALS['TSFE']->register['thumbwidth'] = $this->conf['thumbwidth'];
 		}
-		if (!empty ($this->lConf['thumbheight'])) {
-			$GLOBALS['TSFE']->register['thumbheight'] = $this->lConf['thumbheight'];
+		if (!empty ($this->conf['thumbheight'])) {
+			$GLOBALS['TSFE']->register['thumbheight'] = $this->conf['thumbheight'];
 		}
-		if (!empty ($this->lConf['cropscaling'])) {
-			$GLOBALS['TSFE']->register['cropscaling'] = $this->lConf['cropscaling'];
+		if (!empty ($this->conf['cropscaling'])) {
+			$GLOBALS['TSFE']->register['cropscaling'] = $this->conf['cropscaling'];
 		}
 /*
+if ($_SERVER['REMOTE_ADDR'] == '141.54.158.70') {
 echo '<pre><b>$this->lConf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->lConf, 1) . '</pre>';
 echo '<pre><b>$this->conf @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . print_r($this->conf, 1) . '</pre>';
 echo '<pre><b>$GLOBALS[TSFE]->register @ ' . __FILE__ . '::' . __LINE__ . ':</b> ' . htmlspecialchars(print_r($GLOBALS['TSFE']->register, 1)) . '</pre>';
 exit;
+}
 */
+	}
+
+
+	// -------------------------------------------------------------------------
+	/**
+	 * prepare plugin config if we have a CE record as gallery
+	 *
+	 * @return	void
+	 * @version 1.2.2
+	 */
+	protected function prepareConfig4tt_content() {
+		$this->pi_initPIflexForm();
+		$piFlexForm = $this->cObj->data['pi_flexform'];
+
+		foreach ($piFlexForm['data'] as $sheet => $data) {
+			foreach ($data as $lang => $value) {
+				foreach ($value as $key => $val) {
+					$ffVal = $this->pi_getFFvalue($piFlexForm, $key, $sheet);
+
+						//  -1 means skip (use TypoScript value instead of)
+					if ($ffVal != -1) {
+						$this->lConf[$key] = $ffVal;
+					}
+				}
+			}
+		}
+
+		if (isset ($this->lConf['largectrls'])) {
+			$this->conf['largectrls']     = $this->lConf['largectrls'];
+		}
+		if (isset ($this->lConf['showtitle'])) {
+			$this->conf['showtitle']      = $this->lConf['showtitle'];
+		}
+		if (isset ($this->lConf['showtitle'])) {
+			$this->conf['singleViewOnly'] = $this->lConf['singleViewOnly'];
+		}
+
+		if (!empty ($this->lConf['thumbheight'])) {
+			$this->conf['thumbheight']    = $this->lConf['thumbheight'];
+		}
+		if (!empty ($this->lConf['thumbwidth'])) {
+			$this->conf['thumbwidth']     = $this->lConf['thumbwidth'];
+		}
+
+		if (isset ($this->lConf['cropscaling'])) {
+			$this->conf['cropscaling']    = $this->lConf['cropscaling'];
+		}
+		if (!empty ($this->lConf['autostart'])) {
+			$this->conf['autostart']      = $this->lConf['autostart'];
+		}
+		if (!empty ($this->lConf['cyclespeed'])) {
+			$this->conf['timeout']        = $this->lConf['cyclespeed'];
+		}
+	}
+
+
+	// -------------------------------------------------------------------------
+	/**
+	 * prepare plugin config if we have a org news record as gallery
+	 *
+	 * @return	void
+	 * @version 1.2.2
+	 */
+	protected function prepareConfig4tx_org_news() {
+		$this->cObj->data =& $this->conf['cObj.']['data.'];
 	}
 
 

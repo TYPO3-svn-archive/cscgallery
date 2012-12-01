@@ -109,9 +109,9 @@ jQuery(function($){
 
 				// enable <a>-wrapping for lightbox
 			if (useLightbox###UID###) {
-				$ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" height:' + imageHeight + 'px;"><a href="' + this.href + '"' + rel + '' + title + '><img src="' + ltbox + '" /></a></div>');
+                $ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" style="height:' + imageHeight + 'px;"><a href="' + this.href + '"' + rel + '' + title + '><img src="' + ltbox + '" /></a></div>');
 			} else {
-				$ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
+                $ss###UID###.append('<div class="slideshow-item slideshow-item' + index + '" style="height:' + imageHeight + 'px;"><img src="' + ltbox + '" /></div>');
 			}
 			if (ssTitle != '') {
 					// slide show image caption (from title)
